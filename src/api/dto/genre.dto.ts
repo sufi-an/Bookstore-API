@@ -4,7 +4,7 @@ export type CreateGenreDTO = {
     name: string;
     slug?: string;
     description?: string;
-    foodGroup?: string;
+
 }
 
 export type UpdateGenreDTO = Optional<CreateGenreDTO, 'name'>
