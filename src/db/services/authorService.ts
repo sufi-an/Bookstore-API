@@ -8,7 +8,7 @@ export const create = (payload: AuthorInput): Promise<AuthorOuput> => {
 export const update = (id: number, payload: Partial<AuthorInput>): Promise<AuthorOuput> => {
     return authorDal.update(id, payload)
 }
-export const getById = (id: number): Promise<AuthorOuput> => {
+export const getById = (id: number): Promise<AuthorOuput |string> => {
     return authorDal.getById(id)
 }
 export const deleteById = (id: number): Promise<boolean> => {

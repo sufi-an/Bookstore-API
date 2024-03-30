@@ -10,7 +10,8 @@ const dbPassword = "postgres"//process.env.DB_PASSWORD
 const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbHost,
   dialect: dbDriver,
-  port:dbPort
+  port:dbPort,
+  logging:false
 })
 
 export default sequelizeConnection

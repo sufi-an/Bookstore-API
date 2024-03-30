@@ -9,3 +9,8 @@ export interface GetAllAuthorFilters {
     isDeleted?: boolean
     includeDeleted?: boolean
 }
+
+export interface GetAllBooksFilters {
+    isDeleted?: boolean
+    includeDeleted?: boolean
+}

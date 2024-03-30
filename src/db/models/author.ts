@@ -14,6 +14,8 @@ export interface AuthorInput extends Optional<AuthorAttributes, 'id'> {}
 
 export interface AuthorOuput extends Required<AuthorAttributes> {}
 
+
+
 class Author extends Model<AuthorAttributes, AuthorInput> implements AuthorAttributes {
     public id!: number
     public name!: string
@@ -26,7 +28,7 @@ class Author extends Model<AuthorAttributes, AuthorInput> implements AuthorAttri
 
 Author.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },

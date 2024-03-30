@@ -34,12 +34,13 @@ export const update = async (id: number, payload: Partial<AuthorInput>): Promise
     return updatedAuthor
 }
 
-export const getById = async (id: number): Promise<AuthorOuput> => {
+export const getById = async (id: number): Promise<AuthorOuput|string> => {
     const author = await Author.findByPk(id)
-
+    console.log(author,'39')
     if (!author) {
         // @todo throw custom error
-        throw new Error('not found')
+        // throw new Error('not found')
+        return 'User Not Found'
     }
 
     return author
