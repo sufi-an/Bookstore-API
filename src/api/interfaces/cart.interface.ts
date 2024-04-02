@@ -1,8 +1,8 @@
 
 export interface Cart {
     id: number
-    user: number
-    book: number
+    userId: number
+    bookId: number
     quantity: number
     
 

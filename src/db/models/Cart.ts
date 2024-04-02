@@ -7,8 +7,8 @@ import Book from './Book';
 
 interface CartAttributes {
     id: number;
-    book?: number;
-    user?: number;
+    bookId?: number;
+    userId?: number;
     quantity: number;
 
     createdAt?: Date;
@@ -22,8 +22,8 @@ export interface CartOuput extends Required<CartAttributes> {}
 
 class Cart extends Model<CartAttributes, CartInput> implements CartAttributes {
     public id!: number
-    public book!: number
-    public user!: number
+    public bookId!: number
+    public userId!: number
 
     public quantity!: number
 

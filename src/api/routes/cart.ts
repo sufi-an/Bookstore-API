@@ -14,6 +14,7 @@ cartsRouter.get('/:id',IsAuthenticated, async (req: Request, res: Response) => {
     return res.status(200).send(result)
 })
 
+
 cartsRouter.put('/:id',IsAuthenticated, async (req: Request, res: Response) => {
     const id = Number(req.params.id)
     const payload:UpdateCartDTO = req.body
@@ -39,7 +40,7 @@ cartsRouter.post('/',IsAuthenticated, async (req: RequestWithUserRole, res: Resp
     if(!payload.userId){
         return res.status(400)
     }
-    
+
     const result = await controller.create(payload)
     return res.status(200).send(result)
 })
