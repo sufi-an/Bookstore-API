@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-import {  Author, Book, Genre, User } from './models'
+import {  Author, Book, Cart, Genre, User } from './models'
 
 const isDev = process.env.NODE_ENV === 'development'
 const isTest = process.env.NODE_ENV !== 'test'
@@ -11,7 +11,8 @@ const dbInit = () => Promise.all([
     Genre.sync(),
     Author.sync(),
     Book.sync(),
-    User.sync()
+    User.sync(),
+    Cart.sync()
   ])
 
 export default dbInit 

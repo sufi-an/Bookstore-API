@@ -19,3 +19,8 @@ export interface GetAllUsersFilters {
     isDeleted?: boolean
     includeDeleted?: boolean
 }
+
+export interface GetAllCartsFilters {
+    isDeleted?: boolean
+    includeDeleted?: boolean
+}
