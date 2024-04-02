@@ -4,30 +4,32 @@ import Author from './author';
 import Genre from './Genre';
 import User from './User';
 import Book from './Book';
+import Cart from './Cart';
 
-interface CartAttributes {
+interface OrderAttributes {
     id: number;
-    bookId?: number;
+    cartId?: number;
     userId?: number;
     quantity: number;
-    status:string;
-
+    totalPrice:number
+    
     createdAt?: Date;
     updatedAt?: Date;
     deletedAt?: Date;
 }
 
-export interface CartInput extends Optional<CartAttributes, 'id' > {}
+export interface OrderInput extends Optional<OrderAttributes, 'id' > {}
 
-export interface CartOuput extends Required<CartAttributes> {}
+export interface OrderOuput extends Required<OrderAttributes> {}
 
-class Cart extends Model<CartAttributes, CartInput> implements CartAttributes {
+class Order extends Model<OrderAttributes, OrderInput> implements OrderAttributes {
     public id!: number
-    public bookId!: number
+    public cartId!: number
     public userId!: number
 
     public quantity!: number
-    public status!: string;
+    public totalPrice!:number
+
     
     // timestamps!
     public readonly createdAt!: Date;
@@ -35,7 +37,7 @@ class Cart extends Model<CartAttributes, CartInput> implements CartAttributes {
     public readonly deletedAt!: Date;
 }
 
-Cart.init({
+Order.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -45,8 +47,8 @@ Cart.init({
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    status:{
-        type: DataTypes.STRING,
+    totalPrice:{
+        type: DataTypes.INTEGER,
         allowNull: false
     }
     
@@ -55,11 +57,11 @@ Cart.init({
   paranoid: true
 })
 
-Cart.belongsTo(User,{
+Order.belongsTo(User,{
     as:'user'
 })
-Cart.belongsTo(Book,{
-    as:'book'
+Order.belongsTo(Cart,{
+    as:'cart'
 })
 
-export default Cart
+export default Order

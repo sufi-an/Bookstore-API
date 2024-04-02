@@ -5,6 +5,7 @@ export type CreateCartDTO = {
 
     bookId: number;
     quantity: number;
+    status:string;
    
 
 }

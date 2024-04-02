@@ -17,7 +17,7 @@ public  async getAll(  filters: FilterCartsDTO): Promise<Cart[]>  {
 @Post("/")
  public async create(@Body() payload: CreateCartDTO): Promise<Cart>  {
     // return mapper.toCart(await service.create(payload))
-    
+    payload.status='created'
     return await service.create(payload)
 }
 @Put('/:id')
