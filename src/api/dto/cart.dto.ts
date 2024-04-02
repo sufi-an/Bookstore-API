@@ -1,9 +1,9 @@
 import { Optional } from "sequelize/types"
 
 export type CreateCartDTO = {
-    user: number;
+    userId: number;
 
-    book: number;
+    bookId: number;
     quantity: number;
    
 

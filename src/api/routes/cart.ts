@@ -3,6 +3,7 @@ import { Router, Request, Response} from 'express'
 import CartController from '../controllers/Cart'
 import {CreateCartDTO, FilterCartsDTO, UpdateCartDTO} from '../dto/cart.dto'
 import {IsAuthenticated} from '../middlewares/authMiddleware'
+import { RequestWithUserRole } from '../interfaces/user.interface'
 const cartsRouter = Router()
 const controller = new CartController()
 
@@ -30,9 +31,15 @@ cartsRouter.delete('/:id',IsAuthenticated, async (req: Request, res: Response) =
     })
 })
 
-cartsRouter.post('/',IsAuthenticated, async (req: Request, res: Response) => {
+cartsRouter.post('/',IsAuthenticated, async (req: RequestWithUserRole, res: Response) => {
     const payload:CreateCartDTO = req.body
+    
+    payload.userId=req.user!.id
 
+    if(!payload.userId){
+        return res.status(400)
+    }
+    
     const result = await controller.create(payload)
     return res.status(200).send(result)
 })
