@@ -79,4 +79,5 @@ Book.belongsTo(Author,{
 Book.belongsTo(Genre,{
     as:'genre'
 })
+
 export default Book

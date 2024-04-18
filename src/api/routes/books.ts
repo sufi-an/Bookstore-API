@@ -2,18 +2,18 @@ import { Router, Request, Response} from 'express'
 
 import BookController from '../controllers/Book'
 import {CreateBookDTO, FilterBooksDTO, UpdateBookDTO} from '../dto/book.dto'
-
+import {IsAuthenticated} from '../middlewares/authMiddleware'
 const booksRouter = Router()
 const controller = new BookController()
 
-booksRouter.get('/:id', async (req: Request, res: Response) => {
+booksRouter.get('/:id',IsAuthenticated, async (req: Request, res: Response) => {
     const id = Number(req.params.id)
 
     const result = await controller.getById(id)
     return res.status(200).send(result)
 })
 
-booksRouter.put('/:id', async (req: Request, res: Response) => {
+booksRouter.put('/:id',IsAuthenticated, async (req: Request, res: Response) => {
     const id = Number(req.params.id)
     const payload:UpdateBookDTO = req.body
     
@@ -21,7 +21,7 @@ booksRouter.put('/:id', async (req: Request, res: Response) => {
     return res.status(201).send(result)
 })
 
-booksRouter.delete('/:id', async (req: Request, res: Response) => {
+booksRouter.delete('/:id',IsAuthenticated, async (req: Request, res: Response) => {
     const id = Number(req.params.id)
     
     const result = await controller.deleteById(id)
@@ -30,14 +30,14 @@ booksRouter.delete('/:id', async (req: Request, res: Response) => {
     })
 })
 
-booksRouter.post('/', async (req: Request, res: Response) => {
+booksRouter.post('/',IsAuthenticated, async (req: Request, res: Response) => {
     const payload:CreateBookDTO = req.body
 
     const result = await controller.create(payload)
     return res.status(200).send(result)
 })
 
-booksRouter.get('/', async (req: Request, res: Response) => {
+booksRouter.get('/',IsAuthenticated, async (req: Request, res: Response) => {
     const filters:FilterBooksDTO = req.query
 
     const results = await controller.getAll(filters)
